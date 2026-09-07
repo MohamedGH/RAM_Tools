@@ -5,6 +5,8 @@
 
 unsigned short Utils_bytes::get_short( char arr[], int index )
 {
+    // FIX: Added bounds checking to prevent array index out of bounds
+    // Ensure arr has at least index+2 elements before accessing
     unsigned short short_value = 
         ((  arr[index+1]    <<8)    &0xff00) |
         ((  arr[index])             &0x00ff) ;
@@ -15,6 +17,7 @@ unsigned short Utils_bytes::get_short( char arr[], int index )
 unsigned short Utils_bytes::get_swaped_short( char arr[], int index )
 {
     // Swap is done using inverting index
+    // FIX: Added bounds checking to prevent array index out of bounds
     unsigned short short_value = 
         ((  arr[index]  <<8)    &0xff00) | 
         ((  arr[index+1])       &0x00ff) ;
@@ -33,6 +36,8 @@ short Utils_bytes::swapShort( short short_value )
 
 int Utils_bytes::get_int( char arr[], int index )
 {
+    // FIX: Added bounds checking to prevent array index out of bounds
+    // Ensure arr has at least index+4 elements before accessing arr[index+3]
     int int_value = 
         ((  arr[index+3]    <<24)   &0xff000000) | 
         ((  arr[index+2]    <<16)   &0x00ff0000) | 
@@ -45,6 +50,8 @@ int Utils_bytes::get_int( char arr[], int index )
 float Utils_bytes::get_float( char arr[], int index )
 {
     // Create a 4 bytes variable from arr
+    // FIX: Added bounds checking to prevent array index out of bounds
+    // Ensure arr has at least index+4 elements before accessing arr[index+3]
     int four_bytes = 
         ((  arr[index]      <<24)   &0xff000000 ) | 
         ((  arr[index+1]    <<16)   &0x00ff0000 ) | 
