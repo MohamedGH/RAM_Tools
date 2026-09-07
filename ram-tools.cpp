@@ -39,11 +39,17 @@ HANDLE utils_ram::Open_process( wstring name)
         }
     }
 
-    while (Process32NextW(snap, &entry)); //keep going until end of snapsho
+    while (Process32NextW(snap, &entry)); //keep going until end of snapshot
 
     for (int i(0); i < pids.size(); ++i)
     {
         std::cout << pids[i] << std::endl;
+    }
+
+    // FIX: Added safety check to prevent accessing empty vector
+    if (pids.empty())
+    {
+        return 0;
     }
 
     DWORD access = PROCESS_VM_READ |
@@ -145,7 +151,8 @@ DWORD64 utils_ram::Search_ram( HANDLE h, unsigned char to_find[], DWORD64 start_
 
         for ( base; base < 10240 - len; base++ )
         {
-            for ( i = 0 ; i <= len; i++)
+            // FIX: Changed loop condition from 'i <= len' to 'i < len' to prevent buffer overflow
+            for ( i = 0 ; i < len; i++)
             {
                 if ( buf[ base + i ] == to_find[i] || to_find[ i ] == ( unsigned char )0xff)
                 {
