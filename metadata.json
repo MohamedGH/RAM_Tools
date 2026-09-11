@@ -1,0 +1,6 @@
+{
+  "name": "C++ Memory & Byte Tools Explorer",
+  "description": "Interactive visualizer, simulator, and documentation for C++ byte endianness conversions, IEEE-754 float inspection, RAM search, and process memory tooling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
